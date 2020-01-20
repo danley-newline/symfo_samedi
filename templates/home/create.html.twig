@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formBookin 'bootstrap_4_layout.html.twig' %}
+
+
+{% block body %}
+
+     {% if editMode %}
+        <h1>modifications de l'article </h1>
+    {% else %}
+        <h1>Creer Votre article</h1>
+    {% endif %}
+
+    {{ form_start(formBookin) }}
+
+        {{ form_row(formBookin.title,{'attr':{'placeholder':"Titre de  l'article" }}) }}
+        {{ form_row(formBookin.category) }}
+        {{ form_row(formBookin.content | raw, {'attr': {'placeholder':"contenu de l'article"}}) }}
+        {{ form_row(formBookin.image, {'attr': {'placeholder':"url image"}}) }}
+
+        
+        <button type="submit" class="btn btn-success">
+            
+            {% if editMode %}
+                Enregistrer les modifications
+
+            {% else %}
+                Ajouter l'article
+
+            {% endif %}
+            
+            
+        </button>
+
+    {{ form_end(formBookin) }}
+
+{% endblock  %}
+

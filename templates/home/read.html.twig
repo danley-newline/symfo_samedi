@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | lecture{% endblock %}
+
+{% block body %}
+
+
+    <div class="row justify-content">
+      <div class="col-sm-12 ">
+          <div class="card">
+            <div class="card-header">
+              <h1>{{ bookin.title }} </h1>
+            </div>
+            <div class="card-body">
+              <div class="row">
+              <p>{{ bookin.createdAt | date('d/m/Y')}} aux de environs de {{ bookin.createdAt | date('H:i') }} dans la categorie  , <h5>{{ bookin.category.title }} </h5></p>
+                <div class="col-sm-12 ">
+                    <img class="col-sm-12" src="{{bookin.image}}" height="200" >
+                </div>
+                <div class="col-sm-12">
+                    {{bookin.content | raw}}
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h1>Commentaires</h1>
+
+        <section class="commentaire">
+          {% for comment in bookin.comments %}
+
+            <div class="row">
+              <div class="col-3">{{ comment.auteur }}( <small>{{ comment.createdAt | date('d/m/Y a  H:i')}}</small> )</div>
+              <div class="col">{{ comment.content | raw }}</div>
+            </div>
+
+          {% endfor %}
+        </section>
+
+{% endblock %}

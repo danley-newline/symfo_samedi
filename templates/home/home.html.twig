@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Arcticle{% endblock %}
+
+{% block body %}
+
+    
+    <section class="container">
+
+        {% for bookin in bookins %}
+
+            <h1>{{ bookin.title }} </h1>
+            
+            <p>Creer par danley newline le {{ bookin.createdAt | date('d/m/Y')}} a {{ bookin.createdAt | date('H:i') }} dans : {{ bookin.category.title }}  </p>
+            
+            <img class="col-sm-12" src="{{ bookin.image }}" alt="">
+            <div class="content">
+                {{ bookin.content | raw }}
+                <a href="{{ path('home_read',{'id': bookin.id})}}" class="btn btn-primary">Lire d' avantage</a>
+                <a href="{{ path('home_edit',{'id': bookin.id})}}" class="btn btn-warning">modifier l'article</a>
+            </div>
+
+        {% endfor %}
+        
+    </section>
+
+
+
+{% endblock %}
